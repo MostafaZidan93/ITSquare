@@ -11,14 +11,20 @@ class CategoryViewModel: ObservableObject {
     
     @Published var categoryArray: [CategoryModel] = []
     @Published var alerItem: AlertItem?
+    @Published var isLoading = false
     
     func getCategories() {
+        self.isLoading = true
+        
         APIClient.shared.getCategories { categoryResult in
+            
             DispatchQueue.main.async {
                 
                 switch categoryResult {
                 case .success(let result):
-                    self.categoryArray = result
+                    self.categoryArray = result.filter {
+                        $0.name != "Uncategorized"
+                    }
                     
                 case .failure(let error):
                     switch error {
@@ -35,7 +41,7 @@ class CategoryViewModel: ObservableObject {
                         self.alerItem = AlertContext.unableToComplete
                     }
                 }
-                
+                self.isLoading = false
             }
         }
     }

@@ -35,6 +35,7 @@ class APIClient {
         }
         let session = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
+                print("!!!!!!!!!!!!!!!!!!!!!!!!:\(error.localizedDescription)")
                 completionHandler(.failure(.unableToComplete))
                 return
             }
@@ -53,7 +54,7 @@ class APIClient {
                 let result = try JSONDecoder().decode([CategoryModel].self, from: data)
                 
                 completionHandler(.success(result))
-                print("Count is: \(result.count)")
+                print("Result is: \(result)")
             } catch {
                 completionHandler(.failure(.unableToComplete))
                 print("Failed to decode!!!!!!!")

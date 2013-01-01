@@ -15,12 +15,24 @@ struct Category: View {
     
     var body: some View {
         NavigationView {
-            List(categoryViewModel.categoryArray) { category in
+            ZStack {
+                
+                List(categoryViewModel.categoryArray) { category in
                     CategoryItemView(categoryModel: category)
+                        .listRowBackground(Color("itsquarePrimary").cornerRadius(15))
+                        .cornerRadius(15)
+                    Spacer()
                 }
+                
+                
+                if categoryViewModel.isLoading {
+                    LoadingView()
+                }
+            }
             .navigationTitle("Store Categories")
             .font(.title)
         }
+        
         .onAppear {
             categoryViewModel.getCategories()
         }

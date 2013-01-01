@@ -11,17 +11,24 @@ struct CategoryItemView: View {
     let categoryModel: CategoryModel
     var body: some View {
         VStack {
-            Image("dummy")
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(15)
+            AsyncImage(url: URL(string: categoryModel.image?.src ?? "")) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .cornerRadius(15)
+            } placeholder: {
+                Color.gray
+            }
+
+
             Text(categoryModel.name ?? "Optional name")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
                 .scaledToFit()
                 .minimumScaleFactor(0.5)
-                
+            
+//             
         }
         .padding()
     }
