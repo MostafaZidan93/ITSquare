@@ -6,11 +6,31 @@
 //
 
 import SwiftUI
-//First Test
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView {
+            Home()
+                .tabItem {
+                    Label("Feeds", systemImage: "newspaper")
+                    Text("Hello World")
+                }
+            
+            Categories()
+                .tabItem {
+                    Label("Categories", systemImage: "folder.fill")
+                }
+            
+            HotOffers()
+                .tabItem {
+                    Label("Hot Offers", systemImage: "flame.fill")
+                }
+            
+            About()
+                .tabItem {
+                    Label("About", systemImage: "info.bubble")
+                }
+        }
     }
 }
 
