@@ -13,3 +13,10 @@ struct Home: View {
         Text("Home")
     }
 }
+
+
+struct Home_Previews: PreviewProvider {
+    static var previews: some View {
+        Home()
+    }
+}

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//test
+
 struct ContentView: View {
     var body: some View {
         TabView {
@@ -16,7 +16,7 @@ struct ContentView: View {
                     Text("Hello World")
                 }
             
-            Categories()
+            Category()
                 .tabItem {
                     Label("Categories", systemImage: "folder.fill")
                 }
@@ -28,7 +28,7 @@ struct ContentView: View {
             
             About()
                 .tabItem {
-                    Label("About", systemImage: "info.bubble")
+                    Label("About", systemImage: "info")
                 }
         }
     }
