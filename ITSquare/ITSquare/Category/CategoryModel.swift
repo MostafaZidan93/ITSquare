@@ -9,12 +9,13 @@ import Foundation
 
 struct CategoryModel: Codable {
     let id: Int?
+    let parent: Int?
     let name: String?
-    let image: Image?
+    let image: CategoryImage?
 }
 
 
-struct Image: Codable {
+struct CategoryImage: Codable {
     let id: Int?
     let src: String?
 }
