@@ -11,29 +11,21 @@ import SwiftUI
 
 struct Category: View {
     
-    let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible())]
+    @StateObject var categoryViewModel = CategoryViewModel()
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
-                    CategoryItemView(categoryName: "England Laptops", categoryImage: "dummy")
+            List(categoryViewModel.categoryArray) { category in
+                    CategoryItemView(categoryModel: category)
                 }
-            }
             .navigationTitle("Store Categories")
             .font(.title)
         }
         .onAppear {
-            APIClient.shared.getData()
+            categoryViewModel.getCategories()
+        }
+        .alert(item: $categoryViewModel.alerItem) { alert in
+            Alert(title: alert.title, message: alert.message, dismissButton: alert.dismissButton)
         }
     }
 }

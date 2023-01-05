@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryModel: Codable {
+struct CategoryModel: Codable, Identifiable {
     let id: Int?
     let parent: Int?
     let name: String?

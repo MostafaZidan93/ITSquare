@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CategoryItemView: View {
-    let categoryName: String
-    let categoryImage: String
+    let categoryModel: CategoryModel
     var body: some View {
         VStack {
-            Image(categoryImage)
+            Image("dummy")
                 .resizable()
-                .cornerRadius(25)
-            Text(categoryName)
+                .scaledToFit()
+                .cornerRadius(15)
+            Text(categoryModel.name ?? "Optional name")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
@@ -29,6 +29,6 @@ struct CategoryItemView: View {
 
 struct CategoryItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItemView(categoryName: "CategoryName", categoryImage: "dummy")
+        CategoryItemView(categoryModel: CategoryModel(id: 0, parent: 0, name: "demo", image: CategoryImage(id: 0, src: "source")))
     }
 }
